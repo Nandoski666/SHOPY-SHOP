@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <title>Tienda Online</title>
+  </h:head>
+  <h:body>
+    <h:form id="form">
+      <p:growl id="growl" showDetail="true" />
+
+      <div style="display:flex; gap:20px;">
+
+        <!-- Menú lateral sin Perfil -->
+        <div style="width:200px;">
+          <p:panel header="Menú Principal" style="width:100%; margin-bottom:20px;">
+            <p:menu style="width:100%;" toggleable="false">
+              <p:menuitem value="Productos"
+                          action="#{menuView.verProductos}"
+                          icon="pi pi-list" />
+              <p:menuitem value="Carrito de Compras"
+                          action="#{menuView.verCarrito}"
+                          icon="pi pi-shopping-cart" />
+              <p:menuitem value="Cerrar Sesión"
+                          action="#{validarIngreso.logout}"
+                          icon="pi pi-sign-out"
+                          ajax="false"
+                          update="@none" />
+            </p:menu>
+          </p:panel>
+        </div>
+
+        <!-- El resto de tu contenido... -->
+        <div style="flex:1;">
+          <!-- aquí va la tabla de productos, etc. -->
+        </div>
+
+      </div>
+    </h:form>
+  </h:body>
+</html>
