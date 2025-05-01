@@ -22,7 +22,7 @@ public class ClienteService {
         List<Cliente> clientes = clienteDAO.consultarTodosClientes();
         for (Cliente cliente : clientes) {
             // Se compara sin distinguir mayúsculas para mayor robustez.
-            if (cliente.getEmail().equalsIgnoreCase(email)) {
+            if (cliente.getCorreo().equalsIgnoreCase(email)) {
                 return cliente;
             }
         }

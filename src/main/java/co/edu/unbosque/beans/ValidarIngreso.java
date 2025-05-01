@@ -39,7 +39,7 @@ public class ValidarIngreso implements Serializable {
         // Clientes registrados (correo y clave)
         List<Cliente> clientes = clienteService.findAll();
         for (Cliente c : clientes) {
-            if (c.getEmail().equalsIgnoreCase(username) && c.getClave().equals(password)) {
+            if (c.getCorreo().equalsIgnoreCase(username) && c.getClave().equals(password)) {
                 sessionMap.put("user", c.getNombre());
                 sessionMap.put("cliente", c);
                 return "paginaPrincipal?faces-redirect=true";

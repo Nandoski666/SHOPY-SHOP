@@ -14,8 +14,8 @@ public class RegistroCliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    private String email;
-    private String password;
+    private String correo;
+    private String clave;
     private String nombre;
     private String telefono;
 
@@ -24,13 +24,13 @@ public class RegistroCliente implements Serializable {
     // Getters y setters…
 
     public String registrar() {
-        if (clienteService.findByEmail(email) != null) {
+        if (clienteService.findByEmail(correo) != null) {
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "El correo ya está registrado", null));
             return null;
         }
 
-        Cliente nuevoCliente = new Cliente(nombre, email, telefono, password);
+        Cliente nuevoCliente = new Cliente(0, nombre, correo, telefono, clave, false);
         if (clienteService.save(nuevoCliente)) {
             // redirige al home o login
             return "principal?faces-redirect=true";
@@ -41,21 +41,26 @@ public class RegistroCliente implements Serializable {
         }
     }
 
-	public String getEmail() {
-		return email;
+
+	public String getCorreo() {
+		return correo;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
-	public String getPassword() {
-		return password;
+
+	public String getClave() {
+		return clave;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
+
 
 	public String getNombre() {
 		return nombre;

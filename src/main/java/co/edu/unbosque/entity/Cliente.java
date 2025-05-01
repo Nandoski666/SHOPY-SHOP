@@ -1,106 +1,28 @@
 package co.edu.unbosque.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Lob;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+import lombok.NoArgsConstructor;
 
-import java.util.Base64;
+import java.time.LocalDate;
 
-@Entity
-@Table(name = "cliente")
-public class Cliente {
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+@Data
+@SuperBuilder
+@AllArgsConstructor
+@Getter
+@Setter
 
-    @Column(nullable = false)
-    private String nombre;
+public class Cliente extends Usuario{
 
-    @Column(nullable = false, unique = true)
-    private String email;
 
-    private String telefono;
+	 public Cliente(int i, String nombre, String correo, String telefono, String clave, boolean b) {
+		// TODO Auto-generated constructor stub
+	}
+private String direccion;
+private LocalDate fechaRegistro;
 
-    @Column(nullable = false)
-    private String clave;
-
-    @Lob
-    @Column(name = "foto_perfil")
-    private byte[] foto;
-
-    // Constructor sin parámetros requerido por JPA
-    public Cliente() {
-    }
-
-    // Constructor cómodo
-    public Cliente(String nombre, String email, String telefono, String clave) {
-        this.nombre = nombre;
-        this.email = email;
-        this.telefono = telefono;
-        this.clave = clave;
-    }
-
-    // Getters y Setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
-
-    /**
-     * Devuelve la foto codificada en Base64 para mostrar en <h:graphicImage>.
-     */
-    public String getFotoBase64() {
-        if (foto != null) {
-            return Base64.getEncoder().encodeToString(foto);
-        }
-        return null;
-    }
 }
