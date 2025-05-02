@@ -18,26 +18,24 @@
                       showDetail="true"
                       style="margin-bottom:10px; color: #e53935;" />
 
-          <!-- Campos dentro de una grid para mejor alineación -->
-          <h:panelGrid columns="1" columnClasses="labelCol" style="width:100%;">
-            <p:outputLabel for="username" value="Usuario" />
-            <p:inputText id="username"
-                         value="#{validarIngreso.username}"
+          <h:panelGrid columns="1" style="width:100%;">
+            <p:outputLabel for="correo" value="Correo electrónico" />
+            <p:inputText id="correo"
+                         value="#{validarIngreso.correo}"
                          required="true"
-                         requiredMessage="El usuario es obligatorio"
-                         placeholder="Ingrese su usuario"
+                         requiredMessage="El correo es obligatorio"
+                         placeholder="ejemplo@dominio.com"
                          style="width:100%; margin-bottom:10px;" />
 
-            <p:outputLabel for="password" value="Contraseña" />
-            <p:password id="password"
-                        value="#{validarIngreso.password}"
+            <p:outputLabel for="clave" value="Contraseña" />
+            <p:password id="clave"
+                        value="#{validarIngreso.clave}"
                         required="true"
                         requiredMessage="La contraseña es obligatoria"
                         placeholder="Ingrese su contraseña"
                         style="width:100%; margin-bottom:15px;" />
           </h:panelGrid>
 
-          <!-- Botón Ingresar: procesa todo el form y actualiza sólo los mensajes -->
           <p:commandButton value="Ingresar"
                            action="#{validarIngreso.login}"
                            process="@form"
@@ -45,7 +43,6 @@
                            style="width:100%; margin-bottom:10px;"
                            icon="pi pi-sign-in" />
 
-          <!-- Botón Registrarme: salta validaciones, sólo actualiza mensajes -->
           <p:commandButton value="Registrarme"
                            action="#{validarIngreso.registrarme}"
                            process="@this"

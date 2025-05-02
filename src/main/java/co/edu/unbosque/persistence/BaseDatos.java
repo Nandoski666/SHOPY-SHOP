@@ -13,6 +13,15 @@ public class BaseDatos {
 
 	
 	public static ArrayList<Cliente> tablaCliente = new ArrayList<>();
+	public static int generarId() {
+	    int maxId = 0;
+	    for (Cliente c : tablaCliente) {
+	        if (c.getId() > maxId) {
+	            maxId = c.getId();
+	        }
+	    }
+	    return maxId + 1;
+	}
 
 	
 	

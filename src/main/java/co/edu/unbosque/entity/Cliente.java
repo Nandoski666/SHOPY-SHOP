@@ -16,13 +16,16 @@ import lombok.Data;
 @Getter
 @Setter
 
-public class Cliente extends Usuario{
+public class Cliente extends Usuario {
 
+    private String direccion;
+    private LocalDate fechaRegistro;
 
-	 public Cliente(int i, String nombre, String correo, String telefono, String clave, boolean b) {
-		// TODO Auto-generated constructor stub
-	}
-private String direccion;
-private LocalDate fechaRegistro;
+    public Cliente(int id, String nombre, String correo, String telefono, String clave, boolean estado) {
+        super(id, nombre, correo, clave, telefono, estado);
+        this.fechaRegistro = LocalDate.now();
+        // si quieres inicializar `direccion`, hazlo aquí
+    }
 
+    // ...
 }

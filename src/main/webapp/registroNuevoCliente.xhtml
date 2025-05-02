@@ -20,7 +20,7 @@
                        placeholder="Nombre completo" style="width:100%;" />
         
           <h:outputLabel for="email" value="Email:" />
-          <p:inputText id="email" value="#{registroCliente.email}" required="true"
+          <p:inputText id="email" value="#{registroCliente.correo}" required="true"
                        placeholder="Correo electrónico" style="width:100%;">
             <f:validateRegex pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$" />
           </p:inputText>
@@ -30,7 +30,7 @@
                        placeholder="Número de contacto" style="width:100%;" />
           
           <h:outputLabel for="clave" value="Clave:" />
-          <p:password id="clave" value="#{registroCliente.password}" required="true"
+          <p:password id="clave" value="#{registroCliente.clave}" required="true"
                       placeholder="Clave" feedback="true" style="width:100%;" />
                       
         </p:panelGrid>

@@ -2,43 +2,31 @@ package co.edu.unbosque.service;
 
 import co.edu.unbosque.dao.ClienteDAO;
 import co.edu.unbosque.entity.Cliente;
-import java.util.List;
+import co.edu.unbosque.persistence.BaseDatos;
 
 public class ClienteService {
 
-    private ClienteDAO clienteDAO;
+    private ClienteDAO clienteDAO = new ClienteDAO();
 
-    public ClienteService() {
-        this.clienteDAO = new ClienteDAO();
+    /** Guarda un cliente: le asigna ID único y retorna true si se añadió */
+    public boolean save(Cliente cliente) {
+        // Asignar un ID único
+        cliente.setId(BaseDatos.generarId());
+        return clienteDAO.insertarCliente(cliente);
     }
 
-    /**
-     * Busca un cliente por correo electrónico en la "tabla" de clientes.
-     *
-     * @param email correo del cliente a buscar.
-     * @return el objeto Cliente si se encuentra, o null si no existe.
-     */
-    public Cliente findByEmail(String email) {
-        List<Cliente> clientes = clienteDAO.consultarTodosClientes();
-        for (Cliente cliente : clientes) {
-            // Se compara sin distinguir mayúsculas para mayor robustez.
-            if (cliente.getCorreo().equalsIgnoreCase(email)) {
-                return cliente;
+    /** Busca un cliente por correo (case-insensitive) o null si no existe */
+    public Cliente findByEmail(String correo) {
+        for (Cliente c : clienteDAO.consultarTodosClientes()) {
+            if (c.getCorreo().equalsIgnoreCase(correo)) {
+                return c;
             }
         }
         return null;
     }
-    public List<Cliente> findAll() {
-        return clienteDAO.consultarTodosClientes();
-    }
 
-    /**
-     * Guarda un nuevo cliente en la "tabla" (BaseDatos).
-     *
-     * @param cliente el cliente a guardar.
-     * @return true si se guardó correctamente, false en caso contrario.
-     */
-    public boolean save(Cliente cliente) {
-        return clienteDAO.insertarCliente(cliente);
+    /** Devuelve todos los clientes (útil para listar) */
+    public java.util.List<Cliente> findAll() {
+        return clienteDAO.consultarTodosClientes();
     }
 }

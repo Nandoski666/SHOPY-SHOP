@@ -1,7 +1,6 @@
 package co.edu.unbosque.beans;
 
 import java.io.Serializable;
-import java.util.List;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -15,8 +14,8 @@ public class ValidarIngreso implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String username;
-    private String password;
+    private String correo;
+    private String clave;
 
     private ClienteService clienteService = new ClienteService();
     
@@ -24,26 +23,32 @@ public class ValidarIngreso implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         var sessionMap = context.getExternalContext().getSessionMap();
 
-        // Admin (predefinido)
-        if ("admin".equals(username) && "admin".equals(password)) {
+        // Validar campos obligatorios
+        if (correo == null || correo.isBlank() || clave == null || clave.isBlank()) {
+            context.addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Correo y contraseña son obligatorios", null));
+            return null;
+        }
+
+        // Admin predefinido
+        if ("admin@tuempresa.com".equalsIgnoreCase(correo) && "admin".equals(clave)) {
             sessionMap.put("user", "admin");
             return "paginaAdmin?faces-redirect=true";
         }
 
-        // Cliente genérico (predefinido)
-        if ("cliente".equals(username) && "cliente".equals(password)) {
-            sessionMap.put("user", "cliente");
-            return "paginaPrincipal?faces-redirect=true";
-        }
-
-        // Clientes registrados (correo y clave)
-        List<Cliente> clientes = clienteService.findAll();
-        for (Cliente c : clientes) {
-            if (c.getCorreo().equalsIgnoreCase(username) && c.getClave().equals(password)) {
-                sessionMap.put("user", c.getNombre());
-                sessionMap.put("cliente", c);
+        // Buscar cliente por correo
+        Cliente cliente = clienteService.findByEmail(correo);
+        if (cliente != null) {
+            System.out.println("[DEBUG] Cliente encontrado: " + cliente.getCorreo());
+            if (cliente.getClave().equals(clave)) {
+                sessionMap.put("user", cliente.getNombre());
+                sessionMap.put("cliente", cliente);
                 return "paginaPrincipal?faces-redirect=true";
+            } else {
+                System.out.println("[DEBUG] Clave incorrecta");
             }
+        } else {
+            System.out.println("[DEBUG] No existe cliente con correo: " + correo);
         }
 
         // Credenciales inválidas
@@ -65,19 +70,19 @@ public class ValidarIngreso implements Serializable {
 
     // Getters y setters
 
-    public String getUsername() {
-        return username;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public String getPassword() {
-        return password;
+    public String getClave() {
+        return clave;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 }
