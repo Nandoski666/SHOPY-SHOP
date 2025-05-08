@@ -39,9 +39,9 @@ public class ValidarIngreso implements Serializable {
         // Buscar cliente por correo
         Cliente cliente = clienteService.findByEmail(correo);
         if (cliente != null) {
-            System.out.println("[DEBUG] Cliente encontrado: " + cliente.getCorreo());
+            System.out.println("[DEBUG] Cliente encontrado: " + cliente.getCorreoCliente());
             if (cliente.getClave().equals(clave)) {
-                sessionMap.put("user", cliente.getNombre());
+                sessionMap.put("user", cliente.getNombreCliente());
                 sessionMap.put("cliente", cliente);
                 return "paginaPrincipal?faces-redirect=true";
             } else {

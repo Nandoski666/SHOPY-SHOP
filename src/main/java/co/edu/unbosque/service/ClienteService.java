@@ -18,7 +18,7 @@ public class ClienteService {
     /** Busca un cliente por correo (case-insensitive) o null si no existe */
     public Cliente findByEmail(String correo) {
         for (Cliente c : clienteDAO.consultarTodosClientes()) {
-            if (c.getCorreo().equalsIgnoreCase(correo)) {
+            if (c.getCorreoCliente().equalsIgnoreCase(correo)) {
                 return c;
             }
         }

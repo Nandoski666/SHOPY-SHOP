@@ -29,6 +29,14 @@
             </p:menu>
           </p:panel>
         </div>
+        <h:panelGrid columns="2" cellpadding="5" style="margin-bottom:20px;">
+  <p:outputLabel for="busqueda" value="Buscar producto:" />
+  <p:inputText id="busqueda"
+               value="#{menuView.criterioBusqueda}"
+               placeholder="Nombre del producto"
+               style="width:300px;" />
+</h:panelGrid>
+        
 
         <!-- El resto de tu contenido... -->
         <div style="flex:1;">

@@ -1,25 +1,106 @@
 package co.edu.unbosque.entity;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
-@SuperBuilder
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public abstract class Usuario {
+import java.io.Serializable;
+import jakarta.persistence.*;
+import java.util.Date;
 
-	protected int id;
-	protected String nombre; 
-	protected String correo;
-	protected String clave;
-	protected String telefono;
-	protected boolean estado;
-	
-	
+
+/**
+ * The persistent class for the usuario database table.
+ * 
+ */
+@Entity
+@Table(name="Usuario.findAll")
+public class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Column(name="clave_usrio")
+	private String claveUsrio;
+
+	@Column(name="correo_usuario")
+	private String correoUsuario;
+
+	private byte estado;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="fcha_ultma_clave")
+	private Date fchaUltmaClave;
+
+	private int id;
+
+	@Column(name="id_tipo_usuario")
+	private String idTipoUsuario;
+
+	private int intentos;
+
+	@Column(name="login_usrio")
+	private String loginUsrio;
+
+	public Usuario() {
+	}
+
+	public String getClaveUsrio() {
+		return this.claveUsrio;
+	}
+
+	public void setClaveUsrio(String claveUsrio) {
+		this.claveUsrio = claveUsrio;
+	}
+
+	public String getCorreoUsuario() {
+		return this.correoUsuario;
+	}
+
+	public void setCorreoUsuario(String correoUsuario) {
+		this.correoUsuario = correoUsuario;
+	}
+
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+
+	public Date getFchaUltmaClave() {
+		return this.fchaUltmaClave;
+	}
+
+	public void setFchaUltmaClave(Date fchaUltmaClave) {
+		this.fchaUltmaClave = fchaUltmaClave;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getIdTipoUsuario() {
+		return this.idTipoUsuario;
+	}
+
+	public void setIdTipoUsuario(String idTipoUsuario) {
+		this.idTipoUsuario = idTipoUsuario;
+	}
+
+	public int getIntentos() {
+		return this.intentos;
+	}
+
+	public void setIntentos(int intentos) {
+		this.intentos = intentos;
+	}
+
+	public String getLoginUsrio() {
+		return this.loginUsrio;
+	}
+
+	public void setLoginUsrio(String loginUsrio) {
+		this.loginUsrio = loginUsrio;
+	}
+
 }

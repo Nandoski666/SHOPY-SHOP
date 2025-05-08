@@ -1,31 +1,89 @@
 package co.edu.unbosque.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
-import lombok.NoArgsConstructor;
+import java.io.Serializable;
+import jakarta.persistence.*;
 
-import java.time.LocalDate;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+/**
+ * The persistent class for the cliente database table.
+ * 
+ */
+@Entity
+@Table(name="Cliente.findAll")
+public class Cliente implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-@Data
-@SuperBuilder
-@AllArgsConstructor
-@Getter
-@Setter
+	@Column(name="correo_cliente")
+	private String correoCliente;
 
-public class Cliente extends Usuario {
+	@Column(name="direccion_cliente")
+	private String direccionCliente;
 
-    private String direccion;
-    private LocalDate fechaRegistro;
+	private byte estado;
 
-    public Cliente(int id, String nombre, String correo, String telefono, String clave, boolean estado) {
-        super(id, nombre, correo, clave, telefono, estado);
-        this.fechaRegistro = LocalDate.now();
-        // si quieres inicializar `direccion`, hazlo aquí
-    }
+	private int id;
 
-    // ...
+	@Column(name="nombre_cliente")
+	private String nombreCliente;
+
+	private String telefono;
+
+	public Cliente(int i, String nombre, String correo, String telefono2, String clave, boolean b) {
+	}
+
+	public String getCorreoCliente() {
+		return this.correoCliente;
+	}
+
+	public void setCorreoCliente(String correoCliente) {
+		this.correoCliente = correoCliente;
+	}
+
+	public String getDireccionCliente() {
+		return this.direccionCliente;
+	}
+
+	public void setDireccionCliente(String direccionCliente) {
+		this.direccionCliente = direccionCliente;
+	}
+
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombreCliente() {
+		return this.nombreCliente;
+	}
+
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
+	}
+
+	public String getTelefono() {
+		return this.telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public Object getClave() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 }

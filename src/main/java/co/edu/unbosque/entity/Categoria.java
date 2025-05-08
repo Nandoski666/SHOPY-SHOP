@@ -5,30 +5,21 @@ import jakarta.persistence.*;
 
 
 /**
- * The persistent class for the metodo_pago database table.
+ * The persistent class for the categoria database table.
  * 
  */
 @Entity
-@Table(name="metodo_pago")
-@NamedQuery(name="MetodoPago.findAll", query="SELECT m FROM MetodoPago m")
-public class MetodoPago implements Serializable {
+@Table(name="Categoria.findAll")
+public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	private String descripcion;
 
 	private byte estado;
 
 	private short id;
 
-	public MetodoPago() {
-	}
+	private String nombre;
 
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public Categoria() {
 	}
 
 	public byte getEstado() {
@@ -45,6 +36,14 @@ public class MetodoPago implements Serializable {
 
 	public void setId(short id) {
 		this.id = id;
+	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 }
